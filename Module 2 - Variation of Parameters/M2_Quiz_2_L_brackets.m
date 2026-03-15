@@ -1,8 +1,13 @@
 %% 
 clear all; close all; clc;
+set(groot,'defaultAxesTickLabelInterpreter','latex');
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
 
 %% Q2: Lagrange Brackets:
-tf = 10;
+% QUIZ 4 Poisson Brackets: also uses the same solution... to figure out how to devive, see iPad.
+
+tf = 20;
 e1_0 = 1;
 e2_0 = 0;
 y0 = e1_0; 
