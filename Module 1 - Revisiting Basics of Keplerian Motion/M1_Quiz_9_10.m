@@ -67,6 +67,11 @@ v_vec = [-6.75764, -1.85916, 0.930651]' * 1e3;
 
 [a,e,i,RAAN,omega,f] = RV2COE(r_vec,v_vec,mu)
 
+%% Check M3-Quiz 6 RV if circular:
+% r_cN0 = 1e3 * [-6685.20926, 601.51244, 3346.06634]';
+% v_cN0 = 1e3 * [-1.74294,-6.70242,-2.27739]';
+% [a,e,i,RAAN,omega,f] = RV2COE(r_cN0,v_cN0,mu)
+
 %% Functions
 function M = E2M(E,e)
     M = E - e*sin(E);
