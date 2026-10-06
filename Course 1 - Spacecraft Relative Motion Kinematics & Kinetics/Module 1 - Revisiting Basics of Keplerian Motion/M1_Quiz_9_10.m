@@ -72,6 +72,24 @@ v_vec = [-6.75764, -1.85916, 0.930651]' * 1e3;
 % v_cN0 = 1e3 * [-1.74294,-6.70242,-2.27739]';
 % [a,e,i,RAAN,omega,f] = RV2COE(r_cN0,v_cN0,mu)
 
+%% M3 Quiz 15:
+a = 7500e3; delta_a = 50e3; delta_M0 = 15*pi/180; M0 = 0; % Assumed since not given.
+e = 0.01;
+tf = 14400;
+mu = 3.986e14; % Earth orbit
+n = sqrt(mu/a^3); % [s^-1], Mean motion
+
+
+% Quiz 10 Steps:
+Mf = M0 + n*(tf - 0);
+Ef = M2E(Mf,e);
+ff = E2f(Ef,e);
+
+% Linearized Mean Anomaly Difference: 
+% delta_Mf = delta_M0 - 3/2 * (ff - 2*e*sin(ff)) * delta_a/a
+delta_Mf = delta_M0 - 3/2 * (Mf - 0) * delta_a/a
+delta_Mf * 180/pi
+
 %% Functions
 function M = E2M(E,e)
     M = E - e*sin(E);

@@ -1,5 +1,6 @@
 %% 
 clear all; close all; clc;
+import astro.*   % N2H / hill2rv / rv2hill from lib/+astro (run `startup` if not found)
 set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
@@ -131,7 +132,7 @@ function ds = relMotionODE(t,s)
     xDot = rho_P_H(1); yDot = rho_P_H(2); zDot = rho_P_H(3);
  
     % r_dN_norm = norm([r_cN + x, y, z]);
-    [ON,~,~] = N2H(r_cN_vec, r_cNDot_vec);
+    [ON,~,~] = astro.N2H(r_cN_vec, r_cNDot_vec);
     r_dN_vec = r_cN_vec + ON' * rho_H;
     r_dN_norm = norm(r_dN_vec);
 
@@ -164,15 +165,4 @@ function ds = CWH_ODE(t,s)
     ds = [rho_P_H; rho_PP_H];
 end
 
-function [ON,h,omega_HN_H] = N2H(r_cN, v_cN)
-        h_vec = cross(r_cN, v_cN);
-        h = norm(h_vec);
-    
-        o_cap_r = r_cN/norm(r_cN);
-        o_cap_h = h_vec/h;
-        o_cap_theta = cross(o_cap_h, o_cap_r);
-    
-        ON = [o_cap_r';o_cap_theta';o_cap_h'];
-        fDot = h/(norm(r_cN)^2);
-        omega_HN_H = [0,0,fDot]';
-    end
+% N2H moved to lib/+astro/N2H.m  (call astro.N2H after `import astro.*`)

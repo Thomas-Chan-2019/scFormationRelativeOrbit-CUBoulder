@@ -1,5 +1,6 @@
 %% 
 clear all; close all; clc;
+import astro.*   % rv2hill / hill2rv from lib/+astro (run `startup` if not found)
 set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
